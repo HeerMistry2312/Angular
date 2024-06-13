@@ -1,0 +1,13 @@
+@import "src/styles/style.scss";
+h4 {
+  color: $accent-color;
+}
+.sub-box {
+  border: 2px solid black;
+  border-radius: $form-border-radius;
+}
+.color-box {
+  width: 80px;
+  height: 30px;
+  border-radius: $button-border-radius;
+}

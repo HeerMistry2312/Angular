@@ -1,0 +1,91 @@
+@import "src/styles/style.scss";
+
+.form {
+  margin-top: 20px;
+}
+.input-box label {
+  color: $label-color;
+  font-weight: bold;
+  margin-top: $input-margin-top;
+}
+.form :where(.input-box input, .select-box) {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  outline: none;
+  font-size: $font-size;
+  color: $label-color;
+  margin-top: $input-margin-top;
+  border-radius: 6px;
+  padding: 10px 15px;
+}
+.input-box input:focus {
+  box-shadow: $form-box-shadow;
+}
+.form .gender-box {
+  margin-top: $margin-top;
+}
+.detail {
+  margin-top: $margin-top;
+}
+.gender-box h3 {
+  color: $label-color;
+  font-size: $font-size;
+  font-weight: bold;
+  margin-bottom: $margin-bottom;
+}
+.form :where(.gender-option, .gender) {
+  display: flex;
+  align-items: center;
+  column-gap: 50px;
+  flex-wrap: wrap;
+}
+.form .gender {
+  column-gap: 5px;
+}
+.gender input {
+  accent-color: $accent-color;
+}
+
+.form :where(.gender input, .gender label) {
+  cursor: pointer;
+}
+.gender label {
+  color: $label-color;
+}
+.address :where(input, .select-box) {
+  margin-top: $margin-top;
+}
+.hobby-box h3 {
+  margin-top: $margin-top;
+  color: $label-color;
+  font-size: $font-size;
+  font-weight: bold;
+}
+.btn-gen-username,
+.btn-add-delete,
+.submit-btn,
+.reset-btn {
+  background-color: $button-background-color;
+  color: $button-color;
+  border-radius: $button-border-radius;
+  height: 50px;
+}
+.btn-gen-username:hover,
+.btn-add-delete:hover,
+.submit-btn:hover,
+.reset-btn:hover {
+  background-color: $button-hover-background-color;
+  color: $button-color;
+  border-radius: $button-border-radius;
+  height: 50px;
+}
+
+input.ng-invalid.ng-touched {
+  border: $invalid-border;
+}
+small {
+  color: red;
+  font-weight: bold;
+}
+

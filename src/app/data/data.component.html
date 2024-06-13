@@ -1,0 +1,81 @@
+<div class="container-fluid mt-2">
+  <h2 class="text-center">Form Data</h2>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.firstname}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.lastname}}% </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> EMail </th>
+        <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PhoneNo </th>
+        <td mat-cell *matCellDef="let row"> {{row.phoneNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="linkedin">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> LinkedIn </th>
+        <td mat-cell *matCellDef="let row"> {{row.linkedin}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+        <td mat-cell *matCellDef="let row"> {{row.username}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dob">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
+        <td mat-cell *matCellDef="let row"> {{row.dob}} </td>
+      </ng-container>
+      <ng-container matColumnDef="income">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Income </th>
+        <td mat-cell *matCellDef="let row"> {{row.income|currency:'INR'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+        <td mat-cell *matCellDef="let row"> {{row.gender}} </td>
+      </ng-container>
+      <ng-container matColumnDef="color">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Color </th>
+        <td mat-cell *matCellDef="let row">
+          <div class="color-box mx-2" [style.background-color]="row.color">
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+        <td mat-cell *matCellDef="let row"> {{row.address.street}}, {{row.address.city}}, {{row.address.region}},
+          {{row.country}}, {{row.postalcode}} </td>
+      </ng-container>
+      <ng-container matColumnDef="skills">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Skills </th>
+        <td mat-cell *matCellDef="let row"> <span *ngFor="let skill of row.skills"> {{ skill }}, </span> </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+
+</div>

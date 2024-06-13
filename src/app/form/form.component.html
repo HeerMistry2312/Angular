@@ -1,0 +1,301 @@
+<div class="container box mt-5">
+  <h1 class="text-center"><b>Registration</b></h1>
+
+  <form class="form" [formGroup]="reactiveForm" (ngSubmit)="onFormSubmitted()">
+    <div class="row">
+      <div class="input-box col-lg-6">
+        <label for="firstName">First Name</label>
+        <input type="text" placeholder="Enter your First Name" class="form-control" formControlName="firstname" />
+        <ng-container *ngIf="reactiveForm.get('firstname').touched">
+          <small *ngIf="reactiveForm.get('firstname').hasError('required'); else patternError">
+            *First name is required
+          </small>
+          <ng-template #patternError>
+            <small *ngIf="reactiveForm.get('firstname').hasError('pattern'); else minLengthError">
+              *First name must contain only alphabets
+            </small>
+          </ng-template>
+          <ng-template #minLengthError>
+            <small *ngIf="reactiveForm.get('firstname').hasError('minlength'); else noSpaceError">
+              *First name must be at least 2 characters long
+            </small>
+          </ng-template>
+          <ng-template #noSpaceError>
+            <small *ngIf="reactiveForm.get('firstname').hasError('noSpaceAllowed')">
+              *First name cannot contain spaces
+            </small>
+          </ng-template>
+        </ng-container>
+      </div>
+      <div class="input-box col-lg-6">
+        <label for="lastName">Last Name</label>
+        <input type="text" placeholder="Enter Your Last Name" class="form-control" formControlName="lastname" />
+        <ng-container *ngIf="reactiveForm.get('lastname').touched">
+          <small *ngIf="reactiveForm.get('lastname').hasError('required'); else patternError">
+            *Last name is required
+          </small>
+          <ng-template #patternError>
+            <small *ngIf="reactiveForm.get('lastname').hasError('pattern'); else minLengthError">
+              *Last name must contain only alphabets
+            </small>
+          </ng-template>
+          <ng-template #minLengthError>
+            <small *ngIf="reactiveForm.get('lastname').hasError('minlength'); else noSpaceError">
+              *Last name must be at least 2 characters long
+            </small>
+          </ng-template>
+          <ng-template #noSpaceError>
+            <small *ngIf="reactiveForm.get('lastname').hasError('noSpaceAllowed')">
+              *Last name cannot contain spaces
+            </small>
+          </ng-template>
+        </ng-container>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="input-box col-lg-4">
+        <label for="email">Email</label>
+        <input type="text" placeholder="Enter Your Email" class="form-control" formControlName="email" />
+        <ng-container *ngIf="reactiveForm.get('email').touched">
+          <small *ngIf="reactiveForm.get('email').hasError('required'); else email">
+            *Email is required
+          </small>
+          <ng-template #email>
+            <small *ngIf="reactiveForm.get('email').hasError('email')">
+              *Email is Invalid
+            </small>
+          </ng-template>
+        </ng-container>
+      </div>
+      <div class="input-box col-lg-4">
+        <label for="tel">Phone No:</label>
+        <input type="tel" placeholder="Enter Your ContactNumber" class="form-control" formControlName="phoneNo" />
+        <ng-container *ngIf="reactiveForm.get('phoneNo').touched">
+          <small *ngIf="reactiveForm.get('phoneNo').hasError('required'); else email">
+            *Phone No is required
+          </small>
+          <ng-template #email>
+            <small *ngIf="reactiveForm.get('phoneNo').hasError('pattern')">
+              *Phone number should be 10 digit number
+            </small>
+          </ng-template>
+        </ng-container>
+      </div>
+      <div class="input-box col-lg-4">
+        <label for="url">Linkedin Profile:</label>
+        <input type="url" placeholder="Enter Your Linkedin Profile" class="form-control" formControlName="linkedin" />
+        <ng-container *ngIf="reactiveForm.get('linkedin').touched">
+          <small *ngIf="reactiveForm.get('linkedin').hasError('pattern')">
+            *Invalid LinkedIn URL
+          </small>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-box col-lg-4">
+        <label for="username">Username</label>
+        <input type="text" placeholder="Enter your username" class="form-control" formControlName="username" />
+        <ng-container *ngIf="reactiveForm.get('username').touched">
+          <small *ngIf="reactiveForm.get('username').hasError('required')">
+            *Username is required
+          </small>
+        </ng-container>
+        <br>
+        <button class="btn-gen-username" type="button" (click)="generateUsername()">
+          Create a Username
+        </button>
+      </div>
+      <div class="input-box col-lg-4">
+        <label for="DOB">Date of Birth</label>
+        <input type="date" placeholder="Date of Birth" class="form-control" formControlName="dob" />
+        <ng-container *ngIf="reactiveForm.get('dob').touched">
+          <small *ngIf="reactiveForm.get('dob').hasError('required'); else minimumAgeValidation">
+            *Date of Birth is required
+          </small>
+          <ng-template #minimumAgeValidation>
+            <small *ngIf="reactiveForm.get('dob').hasError('minimumAgeValidation')">
+              *Age should be more than 18
+            </small>
+          </ng-template>
+        </ng-container>
+
+      </div>
+      <div class="input-box col-lg-4">
+        <label for="password">Password</label>
+        <input type="password" placeholder="Enter Your Password" class="form-control" formControlName="password" />
+        <ng-container *ngIf="reactiveForm.get('password').touched">
+          <small *ngIf="reactiveForm.get('password').hasError('required'); else minLength">
+            *Password Is required
+          </small>
+          <ng-template #minLength>
+            <small *ngIf="reactiveForm.get('password').hasError('minLength'); else invalidPassword">
+              *Password must be length of 6
+            </small>
+          </ng-template>
+          <ng-template #invalidPassword>
+            <small *ngIf="reactiveForm.get('password').hasError('invalidPassword')">
+              *Password must contain at least one uppercase letter, one lowercase letter, one number, and one special
+              character
+            </small>
+          </ng-template>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="detail row">
+      <div class="input-box col-lg-6">
+        <label for="income">Income:</label>
+        <input type="range" placeholder="select Income range" id="incomeRange" formControlName="income" min="0" max="100000"
+          step="1000" class="form-range"/>
+          <div class="d-flex justify-content-between">
+            <p>₹0</p>
+            <p>₹100,000</p>
+          </div>
+        <ng-container *ngIf="reactiveForm.get('income').touched">
+          <small *ngIf="reactiveForm.get('income').hasError('required')">
+            *Income is required
+          </small>
+        </ng-container>
+      </div>
+      <div class="input-box col-lg-6">
+        <label for="color">color:</label>
+        <input type="color" placeholder="Enter Your favrouite color" formControlName="color" class="form-control" />
+        <ng-container *ngIf="reactiveForm.get('color').touched">
+          <small *ngIf="reactiveForm.get('color').hasError('required')">
+            *color is required
+          </small>
+        </ng-container>
+
+      </div>
+    </div>
+
+    <div class="gender-box row">
+      <h3>Gender</h3>
+      <div class="gender-option">
+        <div class="gender">
+          <input type="radio" value="male" id="check-male" formControlName="gender" />
+          <label for="check-male">Male</label>
+        </div>
+        <div class="gender">
+          <input type="radio" value="female" id="check-female" formControlName="gender" />
+          <label for="check-female">Female</label>
+        </div>
+        <div class="gender">
+          <input type="radio" value="other" id="check-other" formControlName="gender" />
+          <label for="check-other">Other</label>
+        </div>
+      </div>
+      <ng-container *ngIf="reactiveForm.get('gender').touched">
+        <small *ngIf="reactiveForm.get('gender').hasError('required')">
+          *gender is required
+        </small>
+      </ng-container>
+
+    </div>
+
+    <div class="input-box address mt-2" formGroupName="address">
+      <h2><b>Address</b></h2>
+      <div class="row">
+        <div class="col-lg-12">
+          <label for="street">Street</label>
+          <input type="text" placeholder="Street address" formControlName="street" class="form-control" />
+          <ng-container *ngIf="reactiveForm.get('address.street').touched">
+            <small *ngIf="reactiveForm.get('address.street').hasError('required')">
+              *Street is required
+            </small>
+          </ng-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <label for="country">Country</label>
+          <div class="select-box">
+            <select name="country" class="form-control" formControlName="country">
+              <option hidden>Country</option>
+              <option>America</option>
+              <option>Japan</option>
+              <option>India</option>
+              <option>Nepal</option>
+            </select>
+            <ng-container *ngIf="reactiveForm.get('address.country').touched">
+              <small *ngIf="reactiveForm.get('address.country').hasError('required')">
+                *Country is required
+              </small>
+            </ng-container>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <label for="city">City</label>
+          <input type="text" placeholder="City" formControlName="city" class="form-control" />
+        </div>
+        <div class="col-lg-3">
+          <label for="region">Region</label>
+          <input type="text" placeholder="Region" formControlName="region" class="form-control" />
+
+        </div>
+        <div class="col-lg-3">
+          <label for="postalcode">Postal Code</label>
+          <input type="number" placeholder="Postal code" formControlName="postalcode" class="form-control" />
+          <ng-container *ngIf="reactiveForm.get('address.postalcode').touched">
+            <small *ngIf="reactiveForm.get('address.postalcode').hasError('required'); else maxLength">
+              *Postal Code Is required
+            </small>
+            <ng-template #maxLength>
+              <small *ngIf="reactiveForm.get('address.postalcode').hasError('maxLength'); else pattern">
+                *Postal Code must be length of 5
+              </small>
+            </ng-template>
+            <ng-template #pattern>
+              <small *ngIf="reactiveForm.get('address.postalcode').hasError('pattern')">
+                *Invalid Postal Code
+              </small>
+            </ng-template>
+          </ng-container>
+        </div>
+      </div>
+
+    </div>
+
+    <!--HTML for Skills Form Array -->
+    <div class="input-box skills mt-3" formArrayName="skills">
+      <h2><b>Add Skills</b></h2>
+      <div class="column row" *ngFor="let control of reactiveForm.get('skills')['controls']; let i =index">
+        <div class="col-lg-10">
+          <input type="text" placeholder="Add Skill..." [formControlName]="i" class="form-control">
+          <small
+            *ngIf="reactiveForm.get('skills')['controls'][i].invalid && reactiveForm.get('skills')['controls'][i].touched">*Skills
+            is requires field </small>
+        </div>
+        <div class="col-lg-2">
+          <button type="button" class="btn-add-delete" (click)="deleteSkills(i)">
+            Delete
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <button type="button" class="btn-add-delete m-2" (click)="addSkills()">
+      Add Skills
+    </button><br>
+    <div class="row justify-content-center m-2">
+      <div class="col-lg-4">
+        <input type="checkbox" id="isAccept" name="isAccept" value="isAccept" formControlName="isAccept">
+        <label for="isAccept">*I Agree to Terms and Conditions</label>
+        <small *ngIf="reactiveForm.get('isAccept').invalid && reactiveForm.get('isAccept').touched">*user needs to agree
+          to the terms and Conditions</small>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-1">
+        <input type="submit" value="Submit" class="submit-btn">
+      </div>
+      <div class="col-lg-1">
+        <input type="reset" value="Reset" class="reset-btn">
+      </div>
+    </div>
+  </form>
+
+</div>
